@@ -1,6 +1,6 @@
 spring:
   application:
-   name: shop
+    name: shop
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/webdb
@@ -14,8 +14,6 @@ spring:
     hibernate:
       ddl-auto: create
     database-platform: org.hibernate.dialect.MySQL8Dialect
-    #Hibernate가 MySQL 8 데이터베이스와 상호작용할 때 사용할 SQL 쿼리의 구문 및 특성을 결정하는데 사용됩니다.
-    #이 설정을 통해 Hibernate가 MySQL 8의 새로운 기능을 올바르게 인식하고 활용할 수 있습니다.
 
 logging:
   level:
@@ -26,11 +24,6 @@ logging:
             sql: trace
 
 server:
-  port: 8094
-
-
-
-
-
+  port: 80
 
 
