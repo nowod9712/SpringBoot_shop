@@ -34,7 +34,7 @@ public class Member {
 
     public static Member createMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder){
         Member member = Member.builder()
-                .role(Role.USER)
+                .role(Role.USER) // 회원 가입시 무조건 USER로 설정!
                 .email(memberFormDto.getEmail())
                 .address(memberFormDto.getAddress())
                 .name(memberFormDto.getName())
