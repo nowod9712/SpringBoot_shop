@@ -32,7 +32,7 @@ public class Order {
     private OrderStatus orderStatus; //주문상태
 
     //1:다 라서 List로 담는다.
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<OrderItem> orderItems = new ArrayList<>(); // 부모의 속성까지 같이 쓰겟다.
 
     private LocalDateTime regTime;
