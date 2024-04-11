@@ -1,9 +1,8 @@
 package com.shop.entity;
 
+import com.shop.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -11,7 +10,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderItem {
+public class OrderItem extends BaseEntity {
 
     @Id
     @Column(name = "order_item_id")
@@ -30,9 +29,6 @@ public class OrderItem {
 
     private int count; //수량
 
-    private LocalDateTime regTime;
-
-    private LocalDateTime updateTime;
 
 
 

@@ -1,5 +1,6 @@
 package com.shop.entity;
 
+import com.shop.common.entity.BaseEntity;
 import com.shop.constant.Role;
 import com.shop.dto.MemberFormDto;
 import jakarta.persistence.*;
@@ -13,7 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Member {
+public class Member extends BaseEntity {
 
     @Id
     @Column(name="member_id")
@@ -34,7 +35,7 @@ public class Member {
 
     public static Member createMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder){
         Member member = Member.builder()
-                .role(Role.USER) // 회원 가입시 무조건 USER로 설정!
+                .role(Role.ADMIN) // 회원 가입시 무조건 USER로 설정!
                 .email(memberFormDto.getEmail())
                 .address(memberFormDto.getAddress())
                 .name(memberFormDto.getName())

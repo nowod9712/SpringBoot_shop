@@ -1,5 +1,6 @@
 package com.shop.entity;
 
+import com.shop.common.entity.BaseEntity;
 import com.shop.constant.ItemSellStatus;
 import jakarta.persistence.*;
 import lombok.*;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Item {
+public class Item extends BaseEntity {
 
     @Id
     @Column(name="item_id")
