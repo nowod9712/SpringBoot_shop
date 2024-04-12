@@ -1,7 +1,7 @@
 package com.shop.entity;
 
-import com.shop.common.entity.BaseEntity;
 import com.shop.constant.ItemSellStatus;
+import com.shop.dto.ItemFormDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Item extends BaseEntity {
+public class Item {
 
     @Id
     @Column(name="item_id")
@@ -41,4 +41,11 @@ public class Item extends BaseEntity {
 
     private LocalDateTime updateTime; // 수정 시간
 
+    public void updateItem(ItemFormDto itemFormDto) {
+        this.itemNm = itemFormDto.getItemNm();
+        this.price = itemFormDto.getPrice();
+        this.stockNumber = itemFormDto.getStockNumber();
+        this.itemDetail = itemFormDto.getItemDetail();
+        this.itemSellStatus = itemFormDto.getItemSellStatus();
+    }
 }

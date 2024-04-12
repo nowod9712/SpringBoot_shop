@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
 
-
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional
@@ -40,35 +39,32 @@ class MemberControllerTest {
 
         Member member = Member.createMember(memberFormDto, passwordEncoder);
         return memberService.saveMember(member);
-
-
     }
 
     @Test
     @DisplayName("로그인 성공 테스트")
     //@Commit
     public void loginSuccessTest() throws Exception{
-        String email = "test@email.com";
-        String password = "12345678";
+        String email = "test@test.com";
+        String password = "12345";
         this.createMember(email, password);
         mockMvc.perform(formLogin().userParameter("email")
                 .loginProcessingUrl("/members/login")
                 .user(email)
                 .password(password))
                 .andExpect(SecurityMockMvcResultMatchers.authenticated());
+
     }
 
     @Test
     @DisplayName("로그인 실패 테스트")
     public void loginFailTest() throws Exception{
         String email = "test@email.com";
-        String password = "123453678";
+        String password = "12345";
         this.createMember(email, password);
         mockMvc.perform(formLogin().userParameter("email")
                         .loginProcessingUrl("/members/login")
-                        .user(email)
-                        .password("1234567"))
+                        .user(email).password("1234567"))
                 .andExpect(SecurityMockMvcResultMatchers.unauthenticated());
     }
-
 }

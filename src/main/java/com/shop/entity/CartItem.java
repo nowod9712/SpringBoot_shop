@@ -6,13 +6,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Getter
 @Setter
-@Table(name="cart_item")
+@Getter
 public class CartItem extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cart_item_id")
     private Long id;
 
@@ -21,8 +20,8 @@ public class CartItem extends BaseEntity {
     private Cart cart;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="item_id")
-    private Item item;
+    @JoinColumn(name = "item_id")
+    private  Item item;
 
     private int count;
 }

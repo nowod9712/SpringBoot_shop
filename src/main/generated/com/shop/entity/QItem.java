@@ -19,11 +19,6 @@ public class QItem extends EntityPathBase<Item> {
 
     public static final QItem item = new QItem("item");
 
-    public final com.shop.common.entity.QBaseEntity _super = new com.shop.common.entity.QBaseEntity(this);
-
-    //inherited
-    public final StringPath createdBy = _super.createdBy;
-
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final StringPath itemDetail = createString("itemDetail");
@@ -31,9 +26,6 @@ public class QItem extends EntityPathBase<Item> {
     public final StringPath itemNm = createString("itemNm");
 
     public final EnumPath<com.shop.constant.ItemSellStatus> itemSellStatus = createEnum("itemSellStatus", com.shop.constant.ItemSellStatus.class);
-
-    //inherited
-    public final StringPath modifiedBy = _super.modifiedBy;
 
     public final NumberPath<Integer> price = createNumber("price", Integer.class);
 

@@ -1,16 +1,16 @@
 package com.shop.entity;
 
-import com.shop.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Entity
-@Getter
-@Setter
-@Builder
-@NoArgsConstructor
+@Getter@Setter
 @AllArgsConstructor
-public class OrderItem extends BaseEntity {
+@NoArgsConstructor
+@Builder
+public class OrderItem {
 
     @Id
     @Column(name = "order_item_id")
@@ -22,14 +22,14 @@ public class OrderItem extends BaseEntity {
     private Item item;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "orderJ_id")
     private Order order;
 
-    private int orderPrice; //주문가격
+    private int orderPrice;   //주문가격
 
-    private int count; //수량
+    private int count;    //수량
 
+    private LocalDateTime regTime;
 
-
-
+    private LocalDateTime updateTime;
 }

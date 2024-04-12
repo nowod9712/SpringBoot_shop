@@ -15,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.thymeleaf.util.StringUtils;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootTest
@@ -36,6 +37,8 @@ class ItemRepositoryTest {
             item.setItemDetail("테스트 상품 상세 설명" + i);
             item.setItemSellStatus(ItemSellStatus.SELL);
             item.setStockNumber(100);
+            item.setRegTime(LocalDateTime.now());
+            item.setUpdateTime(LocalDateTime.now());
             itemRepository.save(item);
         }
 
@@ -46,6 +49,8 @@ class ItemRepositoryTest {
             item.setItemDetail("테스트 상품 상세 설명" + i);
             item.setItemSellStatus(ItemSellStatus.SOLD_OUT);
             item.setStockNumber(100);
+            item.setRegTime(LocalDateTime.now());
+            item.setUpdateTime(LocalDateTime.now());
             itemRepository.save(item);
         }
     }
@@ -91,6 +96,8 @@ class ItemRepositoryTest {
                     .stockNumber(100 + i)
                     .itemDetail("테스트 상품 상세 설명" + i)
                     .itemSellStatus(ItemSellStatus.SELL)
+                    .regTime(LocalDateTime.now())
+                    .updateTime(LocalDateTime.now())
                     .build();
 
             itemRepository.save(item);

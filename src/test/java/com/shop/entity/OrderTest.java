@@ -7,12 +7,12 @@ import com.shop.repository.OrderItemRepository;
 import com.shop.repository.OrderRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -47,18 +47,17 @@ class OrderTest {
                 .regTime(LocalDateTime.now())
                 .updateTime(LocalDateTime.now())
                 .build();
-
         return item;
     }
 
     @Test
     @DisplayName("영속성 전이 테스트")
-    //@Commit
+    @Commit
     public void cascadeTest(){
 
         Order order = new Order();
 
-        for(int i=0; i<3; i++){
+        for(int i=0;i<3;i++){
             Item item = this.createItem();
             itemRepository.save(item);
             OrderItem orderItem = OrderItem.builder()
@@ -75,13 +74,15 @@ class OrderTest {
 
         Order saveOrder = orderRepository.findById(order.getId())
                 .orElseThrow(EntityNotFoundException::new);
+
         assertEquals(3, saveOrder.getOrderItems().size());
+
     }
 
-    public Order createOrder() {
+    public Order createOrder(){
         Order order = new Order();
 
-        for (int i = 0; i < 3; i++) {
+        for(int i=0;i<3;i++) {
             Item item = this.createItem();
             itemRepository.save(item);
             OrderItem orderItem = OrderItem.builder()
@@ -92,6 +93,7 @@ class OrderTest {
                     .build();
             order.getOrderItems().add(orderItem);
         }
+
         Member member = new Member();
         memberRepository.save(member);
 
@@ -101,8 +103,8 @@ class OrderTest {
     }
 
     @Test
-    @Commit
     @DisplayName("고아객체 제거 테스트")
+    @Commit
     public void orphanRemovalTest(){
         Order order = this.createOrder();
         order.getOrderItems().remove(0);
@@ -111,7 +113,8 @@ class OrderTest {
 
     @Test
     @DisplayName("지연 로딩 테스트")
-    public void lazyLoadingTest(){
+    public void lazyLoadingTest() {
+
         Order order = this.createOrder();
         Long orderItemId = order.getOrderItems().get(0).getId();
         em.flush();
@@ -120,9 +123,9 @@ class OrderTest {
         OrderItem orderItem = orderItemRepository.findById(orderItemId)
                 .orElseThrow(EntityNotFoundException::new);
         System.out.println("Order class : " + orderItem.getOrder().getClass());
-        System.out.println("================================");
+        System.out.println("=================================");
         orderItem.getOrder().getOrderDate();
-        System.out.println("================================");
-
+        System.out.println("=================================");
     }
+
 }
