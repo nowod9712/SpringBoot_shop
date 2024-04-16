@@ -7,8 +7,8 @@ spring:
 
   security:
     user:
-      name: test@email.com
-      password: 12345678
+      name: test@test.com
+      password: 12345
 
   devtools:
     restart:
@@ -41,9 +41,9 @@ spring:
       maxFileSize: 20MB
       maxRequestSize: 100MB
 
-itemImgLocation: c:/shop/item
+itemImgLocation: D:/shop/item
 
-uploadPath: file:///c:/shop/
+uploadPath: file:///D:/shop/
 
 logging:
   level:

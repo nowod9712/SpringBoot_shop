@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.test.annotation.Commit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -28,7 +27,7 @@ class MemberServiceTest {
     public Member createMember(){
 
         MemberFormDto dto = MemberFormDto.builder()
-                .email("test@test.com")
+                .email("test@email.com")
                 .name("홍길동")
                 .address("서울시 마포구 합정동")
                 .password("1234")
@@ -40,7 +39,6 @@ class MemberServiceTest {
 
     @Test
     @DisplayName("회원가입테스트")
-    @Commit
     void saveMemberTest() {
         Member member = createMember();
         System.out.println(member);
